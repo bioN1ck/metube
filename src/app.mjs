@@ -4,7 +4,10 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
-import { userRouter } from './router.mjs';
+import userRouter from './routers/userRouter.mjs';
+import videoRouter from './routers/videoRouter.mjs';
+import globalRouter from './routers/globalRouter.mjs';
+import routes from './routes.mjs';
 
 const app = express();
 
@@ -14,14 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan('dev'));
 
-app.get('/', (req, res) => {
-    res.send('Home page')
-});
-
-app.get('/about', (req, res) => {
-    res.send('About page');
-});
-
-app.use('/user', userRouter);
+app.use(routes.home, globalRouter);
+app.use(routes.users, userRouter);
+app.use(routes.videos, videoRouter);
 
 export default app;

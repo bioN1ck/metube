@@ -1,4 +1,10 @@
 extends layouts/main
 
 block content
-    p This is a Video Edit Page
+    .form-container
+        form(action=routes.videoEdit, method="post")
+            input(type="text", placeholder="Title", name="title")
+            textarea(placeholder="Description", name="description")
+            input(type="submit", value="Save")
+        a.form-container__link(href=routes.videos + routes.videoDelete)
+            | Delete Video

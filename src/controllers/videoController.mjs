@@ -1,4 +1,8 @@
-export const home = (req, res) => res.render('home', { pageTitle: 'Home' });
+import { MOCK_VIDEOS } from '../../db.mjs';
+
+export const home = (req, res) => {
+    res.render('home', { pageTitle: 'Home', videos: MOCK_VIDEOS });
+}
 export const search = (req, res) => {
     const { query: searchQuery } = req.query
     res.render('search', { pageTitle: 'Search', searchQuery });
